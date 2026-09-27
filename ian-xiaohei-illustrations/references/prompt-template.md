@@ -1,51 +1,70 @@
-# 生图提示词模板
+# Image Prompt Template
 
-每张图单独生成。根据正文内容替换变量，不要把多张图拼在一起。
+Generate each image separately. Fill the variables from the article. Never combine several images into one.
+
+## How to fill this
+
+- `{LANGUAGE}` and `{LETTERING}` come from references/language.md: resolve the language first, then copy the lettering style from its table.
+- The number of labels comes from the same table (for example 3 to 5 for English, 5 to 8 for Chinese). Drop the optional label slots you do not need.
+- Labels are written in `{LANGUAGE}`. The rest of the prompt stays in English.
+- If no-text mode is active, use the no-text variant below instead of the labels and lettering lines.
+
+## Generation template
 
 ```text
-Generate one standalone 16:9 horizontal Chinese article illustration.
+Generate one standalone 16:9 horizontal article illustration.
 
 Visual DNA:
-Pure white background. Minimalist black hand-drawn line art. Slightly wobbly pen lines. Lots of empty white space. Sparse red/orange/blue handwritten Chinese annotations. Clean absurd product-sketch feeling. No gradients, no shadows, no paper texture, no complex background, no commercial vector style, no PPT infographic look, no cute mascot poster, no children's illustration, no realistic UI.
+Pure white background. Minimalist black hand-drawn line art. Slightly wobbly pen lines. Lots of empty white space. Sparse red/orange/blue handwritten annotations in {LANGUAGE}. Clean absurd product-sketch feeling. No gradients, no shadows, no paper texture, no complex background, no commercial vector style, no PPT infographic look, no cute mascot poster, no children's illustration, no realistic UI.
 
-Recurring IP character required:
-小黑, a small solid-black absurd creature with white dot eyes, tiny thin legs, blank serious expression, slightly uneven hand-drawn body shape. 小黑 must perform the core conceptual action, not decorate the scene. Make 小黑 serious, deadpan, and slightly bizarre, not cute.
+Recurring character required:
+A small solid-black absurd creature with white dot eyes, tiny thin legs, blank serious expression, slightly uneven hand-drawn body shape. The creature must perform the core conceptual action, not decorate the scene. Make it serious, deadpan, and slightly bizarre, not cute. Never write the character's name or any caption about the character on the image.
 
 Theme:
-{正文配图主题}
+{THEME}
 
-Structure type:
-{结构类型：Workflow / 系统局部 / 前后对比 / 角色状态 / 概念隐喻 / 方法分层 / 地图路线 / 小漫画分镜}
+Structure type (for composition only, never write it on the image):
+{STRUCTURE: Workflow / System Slice / Before/After / Character States / Concept Metaphor / Layered Method / Map Route / Mini Comic Strip}
 
 Core idea:
-{这张图要表达的核心意思}
+{CORE_IDEA}
 
 Composition:
-{具体画面：小黑在哪里、正在做什么、主要物件是什么、信息如何流动}
+{COMPOSITION: where the creature is, what it is doing, the main objects, how information moves}
 
 Suggested elements:
-{元素1} / {元素2} / {元素3} / {元素4}
+{element1} / {element2} / {element3} / {element4}
 
-Chinese handwritten labels:
-{标注词1} / {标注词2} / {标注词3} / {标注词4} / {可选标注词5}
+Handwritten labels ({LANGUAGE}): {label1} / {label2} / {label3} / {optional label4} / {optional label5}
+Lettering style: {LETTERING}
 
 Color use:
-Black for main line art and 小黑. Orange for main flow/path/arrows. Red only for key warnings/problems/results. Blue only for secondary notes or feedback/system state.
+Black for main line art and the creature. Orange for the main flow, paths, and arrows. Red only for key warnings, problems, or results. Blue only for secondary notes, feedback, or system state.
 
 Constraints:
-One image explains only one core structure. Keep the main subject around 40%-60% of the canvas. Preserve at least 35% blank white space. Use at most 5-8 short handwritten Chinese labels. Do not write a title in the top-left corner. Do not write the structure type on the image. Do not make it a formal diagram, course slide, or dense explainer. Do not copy prior examples or reuse known case compositions unless explicitly requested; invent a fresh visual metaphor for this specific article. It should be clear but not instructional, interesting but not childish, strange but clean.
+One image explains only one core structure. Keep the main subject around 40%-60% of the canvas. Preserve at least 35% blank white space. Use exactly the labels listed above and no other text. Do not write a title in the top-left corner. Do not write the structure type on the image. Do not make it a formal diagram, course slide, or dense explainer. Do not copy prior examples or reuse known case compositions unless explicitly requested; invent a fresh visual metaphor for this specific article. It should be clear but not instructional, interesting but not childish, strange but clean.
 ```
 
-## 图像编辑提示
+## No-text variant
 
-去掉左上角标题：
+When no-text mode is active, replace the two lines starting with "Handwritten labels" and "Lettering style" with:
 
 ```text
-Edit the provided image. Remove only the handwritten title "{要删除的文字}" and its underline from the top-left corner. Fill that area with the same clean white background, matching the surrounding blank paper. Preserve everything else exactly: characters, labels, paths, line style, composition, aspect ratio, and image quality. Do not add any new text or objects.
+No text, letters, numbers, or labels anywhere in the image. Communicate only through the drawing.
 ```
 
-增强怪诞感：
+Also change "Sparse red/orange/blue handwritten annotations in {LANGUAGE}" in the Visual DNA to "Sparse red/orange/blue hand-drawn marks and arrows", and change "Use exactly the labels listed above and no other text" in the constraints to "No text of any kind".
+
+## Image edit prompts
+
+Remove a title in the top-left corner:
 
 ```text
-Regenerate this illustration with the same core meaning and simple layout, but make 小黑 more central to the conceptual action. 小黑 should be doing the strange work that explains the idea, not standing beside the diagram. Keep it clean, sparse, hand-drawn, and not cute.
+Edit the provided image. Remove only the handwritten title "{TEXT_TO_REMOVE}" and its underline from the top-left corner. Fill that area with the same clean white background, matching the surrounding blank paper. Preserve everything else exactly: characters, labels, paths, line style, composition, aspect ratio, and image quality. Do not add any new text or objects.
+```
+
+Make the character more central:
+
+```text
+Regenerate this illustration with the same core meaning and simple layout, but make the black character more central to the conceptual action. The black character should be doing the strange work that explains the idea, not standing beside the diagram. Keep it clean, sparse, hand-drawn, and not cute.
 ```
