@@ -39,10 +39,10 @@ Handwritten labels ({LANGUAGE}): {label1} / {label2} / {label3} / {optional labe
 Lettering style: {LETTERING}
 
 Color use:
-Black for main line art and the creature. Orange for the main flow, paths, and arrows. Red only for key warnings, problems, or results. Blue only for secondary notes, feedback, or system state.
+Black for main line art and the creature. Orange for the main flow, paths, and arrows; every arrow is orange, never red. Red only for key warnings, problems, or results. Blue only for secondary notes, feedback, or system state.
 
 Constraints:
-One image explains only one core structure. Keep the main subject around 40%-60% of the canvas. Preserve at least 35% blank white space. Use exactly the labels listed above and no other text. Do not write a title in the top-left corner. Do not write the structure type on the image. Do not make it a formal diagram, course slide, or dense explainer. Do not copy prior examples or reuse known case compositions unless explicitly requested; invent a fresh visual metaphor for this specific article. It should be clear but not instructional, interesting but not childish, strange but clean.
+One image explains only one core structure. Keep the main subject around 40%-60% of the canvas. Preserve at least 35% blank white space. Use exactly the labels listed above and no other text. Spell every label exactly as written, letter for letter. Do not write a title in the top-left corner. Do not write the structure type on the image. Do not make it a formal diagram, course slide, or dense explainer. Do not copy prior examples or reuse known case compositions unless explicitly requested; invent a fresh visual metaphor for this specific article. It should be clear but not instructional, interesting but not childish, strange but clean.
 ```
 
 ## No-text variant
@@ -53,7 +53,7 @@ When no-text mode is active, replace the two lines starting with "Handwritten la
 No text, letters, numbers, or labels anywhere in the image. Communicate only through the drawing.
 ```
 
-Also change "Sparse red/orange/blue handwritten annotations in {LANGUAGE}" in the Visual DNA to "Sparse red/orange/blue hand-drawn marks and arrows", and change "Use exactly the labels listed above and no other text" in the constraints to "No text of any kind".
+Also change "Sparse red/orange/blue handwritten annotations in {LANGUAGE}" in the Visual DNA to "Sparse red/orange/blue hand-drawn marks and arrows", and change "Use exactly the labels listed above and no other text. Spell every label exactly as written, letter for letter." in the constraints to "No text of any kind".
 
 ## Image edit prompts
 
