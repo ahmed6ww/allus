@@ -15,10 +15,11 @@ Generate each image separately. Fill the variables from the article. Never combi
 Generate one standalone 16:9 horizontal article illustration.
 
 Visual DNA:
-Pure white background. Minimalist black hand-drawn line art. Slightly wobbly pen lines. Lots of empty white space. Sparse red/orange/blue handwritten annotations in {LANGUAGE}. Clean absurd product-sketch feeling. No gradients, no shadows, no paper texture, no complex background, no commercial vector style, no PPT infographic look, no cute mascot poster, no children's illustration, no realistic UI.
+Medium: black fineliner pen ink drawing on flat pure white paper, like a scanned notebook doodle. Flat 2D line art only: no grayscale tones, no shading, no hatching fills, no lighting, no glow, no vignette, no 3D rendering. The only filled areas are the solid-black character and small spots of flat color.
+Pure white background. Minimalist black hand-drawn line art. Slightly wobbly pen lines of even thin weight. Objects are drawn cleanly with a few small doodle details (tiny grass tufts, motion ticks, screws, a small crack). Lots of empty white space. Sparse red/orange/blue/black handwritten annotations in {LANGUAGE}. Clean absurd product-sketch feeling. No gradients, no shadows, no paper texture, no complex background, no commercial vector style, no PPT infographic look, no cute mascot poster, no children's illustration, no realistic UI.
 
 Recurring character required:
-A small solid-black absurd creature with white dot eyes, tiny thin legs, blank serious expression, slightly uneven hand-drawn body shape. The creature must perform the core conceptual action, not decorate the scene. Make it serious, deadpan, and slightly bizarre, not cute. Never write the character's name or any caption about the character on the image.
+A small solid-black absurd creature shaped like a slightly tilted black bean, with two small white oval eyes near the top, no mouth, stick-thin black arms and legs, blank serious expression, slightly uneven hand-drawn body shape. The creature must perform the core conceptual action, not decorate the scene. Make it serious, deadpan, and slightly bizarre, not cute. Never write the character's name or any caption about the character on the image.
 
 Theme:
 {THEME}
@@ -36,10 +37,10 @@ Suggested elements:
 {element1} / {element2} / {element3} / {element4}
 
 Handwritten labels ({LANGUAGE}): {label1} / {label2} / {label3} / {optional label4} / {optional label5}
-Lettering style: {LETTERING}
+Lettering style: {LETTERING}. Labels are small and thin, placed in the white space, most with a tiny thin hand-drawn arrow pointing at the thing they name.
 
 Color use:
-Black for main line art and the creature. Orange for the main flow, paths, and arrows; every arrow is orange, never red. Red only for key warnings, problems, or results. Blue only for secondary notes, feedback, or system state.
+Black for main line art, the creature, and neutral labels. Orange for the main flow line, path, or arrow; the main flow is orange, never red. Small pointer arrows next to a label use that label's color. Red only for key warnings, problems, or results. Blue only for secondary notes, feedback, or system state.
 
 Constraints:
 One image explains only one core structure. Keep the main subject around 40%-60% of the canvas. Preserve at least 35% blank white space. Use exactly the labels listed above and no other text. Spell every label exactly as written, letter for letter. Do not write a title in the top-left corner. Do not write the structure type on the image. Do not make it a formal diagram, course slide, or dense explainer. Do not copy prior examples or reuse known case compositions unless explicitly requested; invent a fresh visual metaphor for this specific article. It should be clear but not instructional, interesting but not childish, strange but clean.
@@ -53,7 +54,7 @@ When no-text mode is active, replace the two lines starting with "Handwritten la
 No text, letters, numbers, or labels anywhere in the image. Communicate only through the drawing.
 ```
 
-Also change "Sparse red/orange/blue handwritten annotations in {LANGUAGE}" in the Visual DNA to "Sparse red/orange/blue hand-drawn marks and arrows", and change "Use exactly the labels listed above and no other text. Spell every label exactly as written, letter for letter." in the constraints to "No text of any kind".
+Also change "Sparse red/orange/blue/black handwritten annotations in {LANGUAGE}" in the Visual DNA to "Sparse red/orange/blue hand-drawn marks and arrows", and change "Use exactly the labels listed above and no other text. Spell every label exactly as written, letter for letter." in the constraints to "No text of any kind".
 
 ## Image edit prompts
 

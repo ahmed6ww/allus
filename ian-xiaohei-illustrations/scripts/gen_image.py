@@ -89,7 +89,8 @@ def pad_to_aspect(img: Image.Image, aspect: str) -> Image.Image:
     # transparent pixels as a dark, glowing background.
     rgba = img.convert("RGBA")
     canvas.paste(rgba, ((new_w - w) // 2, (new_h - h) // 2), mask=rgba)
-    return canvas
+    # Models often return 252-254 "white"; snap it so the padding seam disappears.
+    return canvas.point(lambda v: 255 if v >= 248 else v)
 
 
 def run_gemini(args) -> tuple[bytes | None, str]:
