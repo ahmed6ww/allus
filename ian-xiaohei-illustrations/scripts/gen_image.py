@@ -79,13 +79,16 @@ def pad_to_aspect(img: Image.Image, aspect: str) -> Image.Image:
     target = parse_aspect(aspect)
     w, h = img.size
     if abs(w / h - target) < 0.01:
-        return img
-    if w / h < target:
+        new_w, new_h = w, h
+    elif w / h < target:
         new_w, new_h = round(h * target), h
     else:
         new_w, new_h = w, round(w / target)
     canvas = Image.new("RGB", (new_w, new_h), "white")
-    canvas.paste(img.convert("RGB"), ((new_w - w) // 2, (new_h - h) // 2))
+    # Composite over white: dropping alpha would expose the color data under
+    # transparent pixels as a dark, glowing background.
+    rgba = img.convert("RGBA")
+    canvas.paste(rgba, ((new_w - w) // 2, (new_h - h) // 2), mask=rgba)
     return canvas
 
 
@@ -143,7 +146,8 @@ def run_openai(args) -> tuple[bytes | None, str]:
     size = "1536x1024" if ratio > 1.05 else "1024x1536" if ratio < 0.95 else "1024x1024"
 
     client = OpenAI()  # reads OPENAI_API_KEY from the environment
-    common = {"model": model, "prompt": args.prompt, "size": size, "quality": args.quality, "n": 1}
+    common = {"model": model, "prompt": args.prompt, "size": size, "quality": args.quality,
+              "background": "opaque", "n": 1}
     if args.edit:
         with open(args.edit, "rb") as f:
             result = client.images.edit(image=f, **common)
