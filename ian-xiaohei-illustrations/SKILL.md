@@ -1,106 +1,118 @@
 ---
 name: ian-xiaohei-illustrations
-description: 生成 Ian 风格的中文正文配图。用于用户要求为中文文章、帖子、博客、Notion 文档、工作流文档、方法论、流程、结构、状态、隐喻或观点生成“怪诞”“小黑”“手绘”“正文配图”“文章插图”“配图建议”“shot list”“去标题/改图”等任务；默认使用小黑 IP、纯白手绘、少量红橙蓝批注、简洁清爽但天马行空的视觉风格。
+description: Plan and generate hand-drawn, absurd but clean 16:9 article illustrations starring Xiaohei, a deadpan small black character who performs the core action. Use when the user asks for article illustrations, blog post images, inline explainer images, hand-drawn or sketch-style illustrations, visualizing a concept, workflow, process, structure, state, or metaphor, a shot list or illustration plan for an article, or editing or removing text or a title from a generated illustration. Works for articles in any language (English, Chinese, Urdu and more); labels follow the article language and default to English. Also triggers on 配图, 正文配图, 小黑. Pure white background, black line art, sparse red/orange/blue handwritten labels, lots of white space, one idea per image.
 ---
 
-# Ian 小黑怪诞正文配图
+# Xiaohei Absurd Article Illustrations
 
-## 核心定位
+## Purpose
 
-为中文文章设计和生成 16:9 横版正文配图。目标不是做商业插画、PPT 信息图或可爱卡通，而是把文章里的关键判断、流程、结构、状态或隐喻，变成一张清爽、怪诞、有创意、可读但不说明书的手绘解释图。
+Design and generate 16:9 horizontal inline illustrations for articles. The goal is not commercial illustration, PPT infographics, or cute cartoons. The goal is to turn a key judgment, process, structure, state, or metaphor from the article into a clean, absurd, creative hand-drawn explainer that is readable but never an instruction manual.
 
-默认视觉 IP 是“小黑”：黑色实心、白点眼、细腿、空表情，认真做一件荒诞但成立的事。小黑必须参与画面的核心动作，不能只是站在旁边当装饰。
+The default visual character is Xiaohei: solid black, white dot eyes, thin legs, blank expression, seriously doing something absurd but valid. The character must take part in the core action of the image, never just stand beside it as decoration.
 
-## 先读这些参考
+## Read these references first
 
-按任务需要读取，不要一次塞满上下文：
+Read them as the task needs them. Do not load everything at once:
 
-- `references/style-dna.md`：风格 DNA、颜色、文字、禁忌。
-- `references/xiaohei-ip.md`：小黑 IP 的形象、性格、动作库和禁忌。
-- `references/composition-patterns.md`：结构类型、原创隐喻方法和反复刻规则。
-- `references/prompt-template.md`：单张生图提示词模板。
-- `references/qa-checklist.md`：生成后检查和迭代规则。
-- `assets/examples/`：只作低频视觉校准，不进入默认生成路径。不要照抄这些案例的构图、物件或标注。
+- `references/language.md`: which language the labels use, how many, how long, lettering style, no-text mode, and what to do when text comes out garbled. Read this first.
+- `references/style-dna.md`: style DNA, colors, text, forbidden list.
+- `references/character.md`: the character's appearance, personality, action library, and forbidden list.
+- `references/composition-patterns.md`: structure types, the original metaphor method, and anti-copy rules.
+- `references/prompt-template.md`: the single-image prompt template.
+- `references/qa-checklist.md`: post-generation checks and iteration rules.
+- `assets/examples/`: only for occasional visual calibration, not part of the default generation path. Never copy their compositions, objects, or labels.
 
-## 工作流
+## Workflow
 
-### 1. 消化正文
+### 1. Digest the article
 
-先读用户给的正文、链接、Notion 页面、Markdown 文件或截图内容。提炼：
+Read the article, link, Notion page, Markdown file, or screenshot the user provides. Extract:
 
-- 核心观点是什么
-- 哪些段落承担认知转折
-- 哪些内容适合用图解释
-- 哪些地方只适合文字，不需要图
+- The core argument.
+- Which paragraphs carry a cognitive turn.
+- Which content is worth explaining with an image.
+- Which parts work better as text only and need no image.
 
-不要平均配图。优先选择“认知锚点”，例如：核心判断、两个断点、输入输出闭环、分流、前后对比、一鱼多吃、承接路径、常见坑、角色状态变化。
+Do not spread images evenly. Prioritize "cognitive anchors": the core judgment, two breakpoints, an input-output loop, a split, a before/after contrast, one source reused many ways, a handoff path, common pitfalls, a change in someone's state.
 
-### 2. 先出配图策略
+Resolve the label language now, following `references/language.md`.
 
-如果用户只是说“分析怎么配图 / 思考哪些地方需要配图”，先给 shot list。每张图写清楚：
+### 2. Plan the illustrations first
 
-- 放在哪个段落后
-- 图的主题
-- 核心意思
-- 结构类型
-- 小黑在图里做什么
-- 建议元素
-- 建议中文标注词
+If the user only asks to analyze where images should go, output a shot list first. For each image give:
 
-默认 4-8 张。文章很短时 1-3 张；长文也不要轻易超过 9 张。够用就好，避免把正文做成画册。
+- Placement (after which paragraph)
+- Theme
+- Core idea
+- Structure type
+- What the character is doing
+- Suggested elements
+- Suggested labels in the resolved language (or "no text")
 
-### 3. 单张生成
+Default to 4 to 8 images. For short pieces, 1 to 3. Even long articles rarely need more than 9. Enough is enough; do not turn the article into a picture book.
 
-如果用户明确要求“生成 / 输出 / 做图 / 帮我生成”，不要停下来等确认；用内置 `image_gen` 每张单独生成。不要把多张图拼在一张里。
+### 3. Generate each image separately
 
-每张图只讲一个核心结构。提示词必须包含：
+If the user explicitly says generate, output, make the images, or similar, do not stop to confirm. Just generate.
 
-- 16:9 横版中文正文配图
-- 纯白背景
-- 黑色手绘线稿
-- 少量红色/橙色/蓝色中文手写批注
-- 大量留白
-- 小黑作为核心动作主体
-- 禁止 PPT、商业插画、幼稚可爱、复杂架构、左上角类型标题
+Run `uv run ~/.claude/skills/ian-xiaohei-illustrations/scripts/gen_image.py --prompt "<full prompt>" --out assets/<article-slug>-illustrations/NN-name.png` once per image. For edits add `--edit <existing.png>`. If text comes out garbled, follow the text failure handling in references/language.md.
 
-不要复刻过往案例。案例只提供风格密度和小黑参与方式，不能直接复用“传送带断点 / 小黑拉线 / 素材鱼 / 盖章工具箱 / 常见坑路径”等已有构图，除非用户明确要求复刻某张图。每次都要从当前文章重新发明一个奇怪但成立的隐喻。
+The script picks the backend automatically: Gemini when `GEMINI_API_KEY` is set, OpenAI when only `OPENAI_API_KEY` is set, or whatever `XIAOHEI_IMAGE_PROVIDER` says. Add `--provider openai` or `--provider gemini` to force one.
 
-### 4. 检查与迭代
+Never combine several images into one. Each image explains only one core structure. Build every prompt from `references/prompt-template.md`. It must include:
 
-生成后检查 `references/qa-checklist.md`。如果出现以下问题，优先重生成或局部编辑：
+- 16:9 horizontal article illustration
+- Pure white background
+- Black hand-drawn line art
+- Sparse red/orange/blue handwritten labels in the resolved language, or no text
+- Lots of white space
+- The character as the subject of the core action, described by appearance only, never by name
+- No PPT, no commercial illustration, nothing childish or cute, no complex architecture, no type title in the top-left corner
 
-- 小黑只是装饰
-- 画面太满
-- 太像流程图/PPT
-- 中文太多或错字严重
-- 左上角出现“常见坑/流程图/系统架构图”等标题
-- 画风太可爱、幼稚、死板
-- 背景不是干净白底
+Do not copy past examples. Examples only show style density and how the character takes part. Do not reuse known compositions such as the conveyor belt with breakpoints, the character pulling lines, the material fish, the stamping toolbox, or the pitfall path, unless the user explicitly asks to copy a specific image. Invent a strange but valid metaphor from the current article every time.
 
-### 5. 保存交付
+### 4. Check and iterate
 
-如果用户在 workspace 内工作，把最终图复制到：
+After generating, open each image and check it against `references/qa-checklist.md`. If any of these appear, regenerate or do a local edit:
+
+- The character is only decoration
+- The image is too crowded
+- It looks like a flowchart or PPT
+- Too much text, misspelled text, or text that was not in the label list
+- A title such as "Common Pitfalls / Flowchart / System Architecture" in the top-left corner
+- The style is too cute, childish, or rigid
+- The background is not clean white
+
+### 5. Save and deliver
+
+If the user is working in a workspace, save the final images to:
 
 ```text
 assets/<article-slug>-illustrations/
 ```
 
-按顺序命名：
+Name them in order:
 
 ```text
 01-topic-name.png
 02-topic-name.png
 ```
 
-保留原始生成文件，不要覆盖已有资产，除非用户明确要求替换。
+Keep the original generated files. Never overwrite existing assets unless the user explicitly asks to replace them. The script adds a `-v2` suffix instead of overwriting.
 
-## 输出口径
+## Output
 
-生成前的策略输出要短而准。生成后的交付要包含：
+Keep the planning output short and precise. The delivery report after generating includes:
 
-- 生成了几张
-- 每张图的用途
-- 保存路径
-- 哪些图最稳，哪些图是可选
+- How many images were generated
+- The purpose of each image
+- Save paths
+- Which images are strongest and which are optional
+- Total images generated, including retries
 
-不要长篇解释风格理论；让图自己说话。
+Do not write long explanations of the style theory. Let the images speak.
+
+---
+
+Adapted from Ian Xiaohei Illustrations by Ian (github.com/helloianneo), MIT License. Language-agnostic version with a Gemini or OpenAI backend for Claude Code.
