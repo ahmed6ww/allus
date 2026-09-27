@@ -1,9 +1,9 @@
 ---
-name: ian-xiaohei-illustrations
-description: Plan and generate hand-drawn, absurd but clean 16:9 article illustrations starring Xiaohei, a deadpan small black character who performs the core action. Use when the user asks for article illustrations, blog post images, inline explainer images, hand-drawn or sketch-style illustrations, visualizing a concept, workflow, process, structure, state, or metaphor, a shot list or illustration plan for an article, or editing or removing text or a title from a generated illustration. Works for articles in any language (English, Chinese, Urdu and more); labels follow the article language and default to English. Also triggers on 配图, 正文配图, 小黑. Pure white background, black line art, sparse red/orange/blue handwritten labels, lots of white space, one idea per image.
+name: allus
+description: Allus plans and generates hand-drawn, absurd but clean 16:9 article illustrations starring Xiaohei, a deadpan small black character who performs the core action. Use when the user asks for article illustrations, blog post images, inline explainer images, hand-drawn or sketch-style illustrations, visualizing a concept, workflow, process, structure, state, or metaphor, a shot list or illustration plan for an article, or editing or removing text or a title from a generated illustration, or mentions Allus. Works for articles in any language (English, Chinese, Urdu and more); labels follow the article language and default to English. Also triggers on 配图, 正文配图, 小黑. Pure white background, black line art, sparse red/orange/blue handwritten labels, lots of white space, one idea per image.
 ---
 
-# Xiaohei Absurd Article Illustrations
+# Allus: Absurd Article Illustrations
 
 ## Purpose
 
@@ -56,9 +56,9 @@ Default to 4 to 8 images. For short pieces, 1 to 3. Even long articles rarely ne
 
 If the user explicitly says generate, output, make the images, or similar, do not stop to confirm. Just generate.
 
-Run `uv run ~/.claude/skills/ian-xiaohei-illustrations/scripts/gen_image.py --prompt "<full prompt>" --out assets/<article-slug>-illustrations/NN-name.png` once per image. For edits add `--edit <existing.png>`. If text comes out garbled, follow the text failure handling in references/language.md.
+Run `uv run ~/.claude/skills/allus/scripts/gen_image.py --prompt "<full prompt>" --out assets/<article-slug>-illustrations/NN-name.png` once per image. For edits add `--edit <existing.png>`. If text comes out garbled, follow the text failure handling in references/language.md.
 
-The script picks the backend automatically: Gemini when `GEMINI_API_KEY` is set, OpenAI when only `OPENAI_API_KEY` is set, or whatever `XIAOHEI_IMAGE_PROVIDER` says. Add `--provider openai` or `--provider gemini` to force one.
+The script picks the backend automatically: Gemini when `GEMINI_API_KEY` is set, OpenAI when only `OPENAI_API_KEY` is set, or whatever `ALLUS_IMAGE_PROVIDER` says. Add `--provider openai` or `--provider gemini` to force one.
 
 Never combine several images into one. Each image explains only one core structure. Build every prompt from `references/prompt-template.md`. It must include:
 
@@ -115,4 +115,4 @@ Do not write long explanations of the style theory. Let the images speak.
 
 ---
 
-Adapted from Ian Xiaohei Illustrations by Ian (github.com/helloianneo), MIT License. Language-agnostic version with a Gemini or OpenAI backend for Claude Code.
+Allus is adapted from Ian Xiaohei Illustrations by Ian (github.com/helloianneo), MIT License. Language-agnostic version with a Gemini or OpenAI backend for Claude Code.

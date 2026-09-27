@@ -3,7 +3,7 @@
 # requires-python = ">=3.10"
 # dependencies = ["google-genai", "openai", "pillow"]
 # ///
-"""Image backend for the ian-xiaohei-illustrations skill in Claude Code.
+"""Image backend for the Allus skill in Claude Code.
 
 Replaces Codex's built-in image_gen tool with either Gemini (Nano Banana, via
 the Interactions API) or OpenAI (gpt-image, via the Images API).
@@ -16,7 +16,7 @@ Edit an existing image (e.g. remove a stray title):
       --prompt "Remove the title in the top-left corner, keep everything else unchanged" \
       --out assets/my-post-illustrations/01-trust-bridge.png
 
-Providers (--provider, or the XIAOHEI_IMAGE_PROVIDER environment variable):
+Providers (--provider, or the ALLUS_IMAGE_PROVIDER environment variable):
   gemini   needs GEMINI_API_KEY. Default when GEMINI_API_KEY is set.
   openai   needs OPENAI_API_KEY. Default when only OPENAI_API_KEY is set.
 
@@ -61,7 +61,7 @@ def unique_path(path: Path) -> Path:
 
 
 def default_provider() -> str:
-    env = os.environ.get("XIAOHEI_IMAGE_PROVIDER", "").strip().lower()
+    env = os.environ.get("ALLUS_IMAGE_PROVIDER", "").strip().lower()
     if env in ("gemini", "openai"):
         return env
     if not os.environ.get("GEMINI_API_KEY") and os.environ.get("OPENAI_API_KEY"):
@@ -162,12 +162,12 @@ def run_openai(args) -> tuple[bytes | None, str]:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Generate or edit one xiaohei illustration with Gemini or OpenAI.")
+    parser = argparse.ArgumentParser(description="Generate or edit one Allus illustration with Gemini or OpenAI.")
     parser.add_argument("--prompt", required=True, help="Full image prompt")
     parser.add_argument("--out", required=True, help="Output PNG path")
     parser.add_argument("--edit", help="Existing image to edit instead of generating from scratch")
     parser.add_argument("--provider", choices=["gemini", "openai"], default=default_provider(),
-                        help="Image backend (default: XIAOHEI_IMAGE_PROVIDER, else whichever API key is set)")
+                        help="Image backend (default: ALLUS_IMAGE_PROVIDER, else whichever API key is set)")
     parser.add_argument("--aspect", default="16:9", help="Aspect ratio, default 16:9")
     parser.add_argument("--size", default="2K", choices=["512px", "1K", "2K", "4K"],
                         help="Gemini resolution (uppercase K required by the API)")
