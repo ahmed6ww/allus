@@ -71,7 +71,7 @@ Images are saved in the current project under `assets/<topic>-illustrations/01-n
 
 ## Attribution
 
-Allus is adapted from Ian Xiaohei Illustrations by Ian (github.com/helloianneo), MIT License. The recurring character Xiaohei and the bundled example images are Ian's; see [NOTICE.md](NOTICE.md) and [LICENSE](LICENSE).
+Allus is adapted from Ian Xiaohei Illustrations by Ian (github.com/helloianneo), MIT License. The recurring character Xiaohei and the bundled example images are Ian's; see [NOTICE.md](NOTICE.md) and [LICENSE](LICENSE). A copy of the license also ships inside the `allus/` skill folder, so it travels with any install.
 
 ---
 
